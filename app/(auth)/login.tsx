@@ -1,7 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import {
-  Alert,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -12,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { getErrorMessage, showAlert } from '@/lib/alert';
 import { useAuth } from '@/providers/AuthProvider';
 
 export default function LoginScreen() {
@@ -22,7 +22,7 @@ export default function LoginScreen() {
 
   async function handleSignIn() {
     if (!email.trim() || !password) {
-      Alert.alert('Missing fields', 'Enter your email and password.');
+      showAlert('Missing fields', 'Enter your email and password.');
       return;
     }
 
@@ -30,9 +30,7 @@ export default function LoginScreen() {
       setLoading(true);
       await signIn(email, password);
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Unable to sign in.';
-      Alert.alert('Sign in failed', message);
+      showAlert('Sign in failed', getErrorMessage(error, 'Unable to sign in.'));
     } finally {
       setLoading(false);
     }

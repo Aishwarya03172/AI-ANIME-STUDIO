@@ -2,17 +2,17 @@ export const Colors = {
   light: {
     text: '#11181C',
     background: '#FFFFFF',
-    tint: '#ea580c',
+    tint: '#7c3aed',
     icon: '#687076',
     tabIconDefault: '#687076',
-    tabIconSelected: '#ea580c',
+    tabIconSelected: '#7c3aed',
   },
   dark: {
     text: '#ECEDEE',
-    background: '#0F0F12',
-    tint: '#fb923c',
+    background: '#050508',
+    tint: '#a78bfa',
     icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: '#fb923c',
+    tabIconDefault: '#6b7280',
+    tabIconSelected: '#a78bfa',
   },
 };

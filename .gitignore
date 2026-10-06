@@ -34,6 +34,13 @@ yarn-error.*
 .env
 .env*.local
 
+# Python
+backend/.venv/
+backend/**/__pycache__/
+backend/**/*.py[cod]
+backend/.pytest_cache/
+*.egg-info/
+
 # typescript
 *.tsbuildinfo
 

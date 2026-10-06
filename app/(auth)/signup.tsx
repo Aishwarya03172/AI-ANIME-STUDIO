@@ -1,7 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import {
-  Alert,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -12,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { getErrorMessage, showAlert } from '@/lib/alert';
 import { useAuth } from '@/providers/AuthProvider';
 
 export default function SignUpScreen() {
@@ -23,17 +23,17 @@ export default function SignUpScreen() {
 
   async function handleSignUp() {
     if (!email.trim() || !password || !confirmPassword) {
-      Alert.alert('Missing fields', 'Fill in all fields to continue.');
+      showAlert('Missing fields', 'Fill in all fields to continue.');
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Passwords do not match', 'Please confirm your password.');
+      showAlert('Passwords do not match', 'Please confirm your password.');
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert('Weak password', 'Use at least 6 characters.');
+      showAlert('Weak password', 'Use at least 6 characters.');
       return;
     }
 
@@ -41,9 +41,10 @@ export default function SignUpScreen() {
       setLoading(true);
       await signUp(email, password);
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Unable to create account.';
-      Alert.alert('Sign up failed', message);
+      showAlert(
+        'Sign up failed',
+        getErrorMessage(error, 'Unable to create account.'),
+      );
     } finally {
       setLoading(false);
     }

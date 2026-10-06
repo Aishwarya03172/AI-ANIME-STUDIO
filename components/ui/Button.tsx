@@ -23,13 +23,13 @@ export function Button({
   const base = 'items-center justify-center rounded-xl px-4 py-3.5';
   const variants = {
     primary: 'bg-brand-600 active:bg-brand-700',
-    secondary: 'bg-zinc-800 active:bg-zinc-700',
-    ghost: 'bg-transparent active:bg-zinc-900/40',
+    secondary: 'bg-white/10 active:bg-white/15 border border-anime-border',
+    ghost: 'bg-transparent active:bg-white/5',
   };
   const textVariants = {
     primary: 'text-white',
     secondary: 'text-white',
-    ghost: 'text-brand-400',
+    ghost: 'text-brand-300',
   };
 
   return (
